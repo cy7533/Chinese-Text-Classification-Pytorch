@@ -1,4 +1,6 @@
 # coding: UTF-8
+import os
+
 import numpy as np
 import torch
 import torch.nn as nn
@@ -32,7 +34,7 @@ def train(config, model, train_iter, dev_iter, test_iter):
     optimizer = torch.optim.Adam(model.parameters(), lr=config.learning_rate)
 
     # 学习率指数衰减，每次epoch：学习率 = gamma * 学习率
-    # scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.9)
+    scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.9)
     total_batch = 0  # 记录进行到多少batch
     dev_best_loss = float('inf')
     last_improve = 0  # 记录上次验证集loss下降的batch数
@@ -40,10 +42,11 @@ def train(config, model, train_iter, dev_iter, test_iter):
     writer = SummaryWriter(log_dir=config.log_path + '/' + time.strftime('%m-%d_%H.%M', time.localtime()))
     for epoch in range(config.num_epochs):
         print('Epoch [{}/{}]'.format(epoch + 1, config.num_epochs))
-        # scheduler.step() # 学习率衰减
         for i, (trains, labels) in enumerate(train_iter):
-            outputs = model(trains)
             model.zero_grad()
+            if hasattr(model, 'init_hidden_state'):
+                model.init_hidden_state(trains['last_batch_size'])
+            outputs = model(trains)
             loss = F.cross_entropy(outputs, labels)
             loss.backward()
             optimizer.step()
@@ -55,13 +58,16 @@ def train(config, model, train_iter, dev_iter, test_iter):
                 dev_acc, dev_loss = evaluate(config, model, dev_iter)
                 if dev_loss < dev_best_loss:
                     dev_best_loss = dev_loss
+                    if not os.path.exists(os.path.dirname(config.save_path)):
+                        os.makedirs(os.path.dirname(config.save_path))
                     torch.save(model.state_dict(), config.save_path)
                     improve = '*'
                     last_improve = total_batch
                 else:
                     improve = ''
                 time_dif = get_time_dif(start_time)
-                msg = 'Iter: {0:>6},  Train Loss: {1:>5.2},  Train Acc: {2:>6.2%},  Val Loss: {3:>5.2},  Val Acc: {4:>6.2%},  Time: {5} {6}'
+                msg = 'Iter: {0:>6},  Train Loss: {1:>5.2},  Train Acc: {2:>6.2%},  Val Loss: {3:>5.2},  Val Acc: {' \
+                      '4:>6.2%},  Time: {5} {6} '
                 print(msg.format(total_batch, loss.item(), train_acc, dev_loss, dev_acc, time_dif, improve))
                 writer.add_scalar("loss/train", loss.item(), total_batch)
                 writer.add_scalar("loss/dev", dev_loss, total_batch)
@@ -76,6 +82,7 @@ def train(config, model, train_iter, dev_iter, test_iter):
                 break
         if flag:
             break
+        scheduler.step()  # 学习率衰减
     writer.close()
     test(config, model, test_iter)
 
@@ -103,6 +110,9 @@ def evaluate(config, model, data_iter, test=False):
     labels_all = np.array([], dtype=int)
     with torch.no_grad():
         for texts, labels in data_iter:
+            model.zero_grad()
+            if hasattr(model, 'init_hidden_state'):
+                model.init_hidden_state(texts['last_batch_size'])
             outputs = model(texts)
             loss = F.cross_entropy(outputs, labels)
             loss_total += loss
