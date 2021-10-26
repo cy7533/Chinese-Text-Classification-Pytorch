@@ -1,4 +1,5 @@
 # coding: UTF-8
+import os
 import time
 import torch
 import numpy as np
@@ -56,4 +57,11 @@ if __name__ == '__main__':
     if model_name != 'Transformer':
         init_network(model)
     print(model.parameters)
+    print(vars(config))
+    if not os.path.exists(os.path.dirname(config.save_path)):
+        os.makedirs(os.path.dirname(config.save_path))
+    with open(os.path.join(os.path.dirname(config.save_path),
+                           config.model_name + '_config.txt'), 'a+') as f:
+        print(vars(config), file=f)
+    torch.save(model.state_dict(), config.save_path)
     train(config, model, train_iter, dev_iter, test_iter)
