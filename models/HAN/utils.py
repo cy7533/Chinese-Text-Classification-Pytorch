@@ -69,4 +69,4 @@ def context_matrix_mul(x, weight):
         feature_list.append(feature)
 
     # [feature_size, 1, m1] => [feature_size, m1]
-    return torch.cat(feature_list, 0).squeeze(1)
+    return torch.stack(feature_list).squeeze(1)
