@@ -1,0 +1,119 @@
+ssh://chiyao@10.176.37.201:22/home/chiyao/anaconda3/envs/han/bin/python -u /home/chiyao/.pycharm_helpers/pydev/pydevd.py --multiproc --qt-support=auto --client 0.0.0.0 --port 38345 --file /home/chiyao/projects/Chinese-Text-Classification-Pytorch/JXPairS/preprocess_data.py
+pydev debugger: process 31552 is connecting
+
+Connected to pydev debugger (build 193.7288.30)
+已读入0_第五十八条_pairs.csv数据，总数量：18968，正例数：18734，负例数：234，开始处理...
+0_第五十八条_pairs.csv的正样本分割：
+train no.: 211.
+test no.: 23.
+0_第五十八条_pairs.csv的负样本分割：
+train no.: 211.
+test no.: 23.
+已读入2_第二条_pairs.csv数据，总数量：18968，正例数：12897，负例数：6071，开始处理...
+2_第二条_pairs.csv的正样本分割：
+train no.: 5464.
+test no.: 607.
+2_第二条_pairs.csv的负样本分割：
+train no.: 5464.
+test no.: 607.
+已读入1_第二百七十三条_pairs.csv数据，总数量：18968，正例数：3982，负例数：14986，开始处理...
+1_第二百七十三条_pairs.csv的正样本分割：
+train no.: 3584.
+test no.: 398.
+1_第二百七十三条_pairs.csv的负样本分割：
+train no.: 3584.
+test no.: 398.
+已读入0_第五十一条_pairs.csv数据，总数量：18968，正例数：18947，负例数：21，开始处理...
+0_第五十一条_pairs.csv的正样本分割：
+train no.: 19.
+test no.: 2.
+0_第五十一条_pairs.csv的负样本分割：
+train no.: 19.
+test no.: 2.
+已读入0_第五十七条第一款_pairs.csv数据，总数量：18968，正例数：18884，负例数：84，开始处理...
+0_第五十七条第一款_pairs.csv的正样本分割：
+train no.: 76.
+test no.: 8.
+0_第五十七条第一款_pairs.csv的负样本分割：
+train no.: 76.
+test no.: 8.
+已读入0_第七十九条_pairs.csv数据，总数量：18968，正例数：2619，负例数：16349，开始处理...
+0_第七十九条_pairs.csv的正样本分割：
+train no.: 2358.
+test no.: 261.
+0_第七十九条_pairs.csv的负样本分割：
+train no.: 2358.
+test no.: 261.
+已读入0_第七十八条_pairs.csv数据，总数量：18968，正例数：320，负例数：18648，开始处理...
+0_第七十八条_pairs.csv的正样本分割：
+train no.: 288.
+test no.: 32.
+0_第七十八条_pairs.csv的负样本分割：
+train no.: 288.
+test no.: 32.
+已读入3_第一条_pairs.csv数据，总数量：18968，正例数：18848，负例数：120，开始处理...
+3_第一条_pairs.csv的正样本分割：
+train no.: 108.
+test no.: 12.
+3_第一条_pairs.csv的负样本分割：
+train no.: 108.
+test no.: 12.
+已读入3_第十六条_pairs.csv数据，总数量：18968，正例数：17204，负例数：1764，开始处理...
+3_第十六条_pairs.csv的正样本分割：
+train no.: 1588.
+test no.: 176.
+3_第十六条_pairs.csv的负样本分割：
+train no.: 1588.
+test no.: 176.
+已读入0_第五十七条第二款_pairs.csv数据，总数量：18968，正例数：18852，负例数：116，开始处理...
+0_第五十七条第二款_pairs.csv的正样本分割：
+train no.: 105.
+test no.: 11.
+0_第五十七条第二款_pairs.csv的负样本分割：
+train no.: 105.
+test no.: 11.
+已读入0_第八十条_pairs.csv数据，总数量：18968，正例数：18850，负例数：118，开始处理...
+0_第八十条_pairs.csv的正样本分割：
+train no.: 107.
+test no.: 11.
+0_第八十条_pairs.csv的负样本分割：
+train no.: 107.
+test no.: 11.
+已读入0_第五十条_pairs.csv数据，总数量：18968，正例数：18883，负例数：85，开始处理...
+0_第五十条_pairs.csv的正样本分割：
+train no.: 77.
+test no.: 8.
+0_第五十条_pairs.csv的负样本分割：
+train no.: 77.
+test no.: 8.
+已读入3_第五条_pairs.csv数据，总数量：18968，正例数：18195，负例数：773，开始处理...
+3_第五条_pairs.csv的正样本分割：
+train no.: 696.
+test no.: 77.
+3_第五条_pairs.csv的负样本分割：
+train no.: 696.
+test no.: 77.
+已读入2_第十七条_pairs.csv数据，总数量：18968，正例数：18885，负例数：83，开始处理...
+2_第十七条_pairs.csv的正样本分割：
+train no.: 75.
+test no.: 8.
+2_第十七条_pairs.csv的负样本分割：
+train no.: 75.
+test no.: 8.
+已读入1_第二百六十一条第二款_pairs.csv数据，总数量：18968，正例数：18883，负例数：85，开始处理...
+1_第二百六十一条第二款_pairs.csv的正样本分割：
+train no.: 77.
+test no.: 8.
+1_第二百六十一条第二款_pairs.csv的负样本分割：
+train no.: 77.
+test no.: 8.
+已读入2_第一条_pairs.csv数据，总数量：18968，正例数：18776，负例数：192，开始处理...
+2_第一条_pairs.csv的正样本分割：
+train no.: 173.
+test no.: 19.
+2_第一条_pairs.csv的负样本分割：
+train no.: 173.
+test no.: 19.
+总计：
+all train no.: 30012.
+all test no.: 3322.

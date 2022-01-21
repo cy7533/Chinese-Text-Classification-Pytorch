@@ -15,7 +15,7 @@ class Config(object):
         self.test_path = dataset + '/data/test.csv'                                  # 测试集
         self.class_list = [x.strip() for x in open(
             dataset + '/data/class.txt', encoding='utf-8').readlines()]              # 类别名单
-        self.material_path = dataset + '/material/'                                  # 数据材料文件夹（停用词，词典）
+        self.material_path = '/home/chiyao/projects/HANpytorch/material/'            # 数据材料文件夹（停用词，词典）
         self.vocab_path = dataset + '/data/vocab.pkl'                                # 词表
         self.save_path = dataset + '/saved_dict/' + self.model_name + '.ckpt'        # 模型训练结果
         self.log_path = dataset + '/log/' + self.model_name
@@ -36,7 +36,7 @@ class Config(object):
             if self.embedding_pretrained is not None else 300           # 字向量维度, 若使用了预训练词向量，则维度统一
         self.hidden_size = 128                                          # lstm隐藏层
         self.num_layers = 2                                             # lstm层数
-        self.hidden_size2 = 64
+        self.hidden_size2 = 128
 
 
 '''Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification'''

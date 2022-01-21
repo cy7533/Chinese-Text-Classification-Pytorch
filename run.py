@@ -17,7 +17,8 @@ args = parser.parse_args()
 
 
 if __name__ == '__main__':
-    dataset = 'JXdata'  # 数据集
+    # dataset = 'JXdata'  # 数据集
+    dataset = 'JXPairS'
 
     # 搜狗新闻:embedding_SougouNews.npz, 腾讯:embedding_Tencent.npz, 随机初始化:random
     embedding = 'embedding_SougouNews.npz'
@@ -31,8 +32,16 @@ if __name__ == '__main__':
     if model_name == 'HANConcat' or model_name == 'HANConcat_Dynamic':
         from utils_han import build_dataset, build_iterator, get_time_dif
         embedding = 'random'
+    if model_name == 'HANConcatAlign':
+        from utils_align_han import build_dataset, build_iterator, get_time_dif
+        embedding = 'random'
     else:
-        from utils_baseline import build_dataset, build_iterator, get_time_dif
+        if model_name.endswith('Align'):
+            model_name = model_name[:-5]
+            from utils_align_baseline import build_dataset, build_iterator, get_time_dif
+        else:
+            from utils_baseline import build_dataset, build_iterator, get_time_dif
+    print(model_name)
 
     x = import_module('models.' + model_name)
     config = x.Config(dataset, embedding)
